@@ -1,0 +1,44 @@
+include:
+  - acls.yaml
+dps:
+  sw1:
+    dp_id: 1
+    hardware: Allied-Telesis
+      13:
+        description: coprocessor
+        name: port1.0.13
+        coprocessor:
+          strategy: vlan_vid
+      14:
+        description: Real web server (192.168.100.32)
+        name: port1.0.14
+        tagged_vlans:
+        - vlan100
+        - mgmt
+      15:
+        description: attacker (192.168.100.92)
+        name: port1.0.15
+        native_vlan: vlan100
+        acls_in:
+          - coprocess_http
+      16:
+        description: DB webserver (192.168.100.34)
+        name: port1.0.16
+        tagged_vlans:
+        - vlan100
+        - mgmt
+        acls_in:
+          - coprocess_mysql
+      17:
+        description: Fake DB server (192.168.100.36)
+        name: port1.0.17
+         tagged_vlans:
+        - vlan100
+        - mgmt
+vlans:
+  vlan100:
+    description: vlan for demo
+    vid: 100
+  mgmt:
+    description: management vlan
+    vid: 199
