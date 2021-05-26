@@ -25,7 +25,7 @@
   <p>Here is some proprietary data.</p>
   <pre>
     <?php 
-        $servername = "192.168.8.51";
+        $servername = "192.168.100.36";
         $username = "goat";
         $password = "GoatStuff#123";
         $port = 3306;
